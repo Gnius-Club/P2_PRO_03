@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook - Sesión 3: ¡Pruebas y Píxeles! – Depurando Nuestro Arte ODS</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6; }
+        .container { max-width: 1000px; margin: auto; padding: 20px; }
+        .header { background-color: #ffa500; color: white; text-align: center; padding: 10px; } /* Orange Accent */
+        .activity { margin-bottom: 20px; }
+        .banner {
+            background-color: #ffa500; /* Orange Accent */
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-weight: bold;
+            list-style: none;
+            display: block;
+        }
+        .content { display: none; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+        }
+        span[style*="color: red;"] {
+            font-weight: bold;
+        }
+         ul, ol {
+            margin-top: 0;
+            margin-bottom: 10px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .time-title { margin-bottom: 20px; text-align: center; font-size: 1.2em; color: #555;}
+
+        summary {
+           display: block;
+           list-style: none;
+        }
+        summary::-webkit-details-marker {
+           display: none;
+        }
+
+    </style>
+    <script>
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            if (content) {
+                if (content.style.display === "none" || content.style.display === "") {
+                    content.style.display = "block";
+                } else {
+                    content.style.display = "none";
+                }
+            }
+        }
+
+        window.onload = () => {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                content.style.display = 'none';
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Playbook - Sesión 3: ¡Pruebas y Píxeles! – Depurando Nuestro Arte ODS</h1>
+    </div>
+    <div class="container">
+        <h2 class="time-title">Tiempo efectivo de clase: 40 minutos</h2>
+
+        <!-- Resumen de Sesión -->
+        <div id="activity-0" class="activity">
+            <div class="banner" onclick="toggleContent('activity_0_content')">
+                <div class="title">📝 Resumen de Sesión</div>
+            </div>
+            <div id="activity_0_content" class="content">
+                <table>
+                    <tr>
+                        <td style="width: 50%; padding: 10px; border-right: 1px solid #ddd;">
+                            <strong>🎯 Objetivo de la Sesión:</strong>
+                            <ul>
+                                <li>Probar el prototipo en desarrollo (enfocado en el PFB).</li>
+                                <li>Identificar y corregir errores (bugs) de programación.</li>
+                                <li>Asegurar que la interacción principal (PFB) funcione correctamente según lo definido.</li>
+                            </ul>
+                            <strong>⏱️ Duración Estimada:</strong> 40 minutos.
+                        </td>
+                        <td style="width: 50%; padding: 10px;">
+                            <strong>🔑 Entregable Clave:</strong>
+                            <ul>
+                                <li>Prototipo funcional básico probado y con errores iniciales corregidos.</li>
+                                <li>Documentación simple de errores encontrados y solucionados (puede ser notas en el Kanban).</li>
+                                <li>Tablero Kanban actualizado, idealmente con las tareas del PFB movidas a "¡Listo!".</li>
+                            </ul>
+                             <strong>🛠️ Materiales/Preparación:</strong>
+                            <ul>
+                                <li>Dispositivos con acceso a Scratch y los proyectos de los equipos.</li>
+                                <li>Tablero Kanban de cada equipo actualizado desde Sesión 2.</li>
+                                <li>Definición del Prototipo Funcional Básico (PFB) de cada equipo.</li>
+                                <li>Proyector o pantalla.</li>
+                                <li>(Opcional) Hojas o método simple para anotar bugs encontrados.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Desarrollo de la Sesión -->
+
+        <!-- Actividad 1: ¡A Examen! Stand-up de Calidad -->
+        <div id="activity-1" class="activity">
+             <div class="banner" onclick="toggleContent('activity_1_content')">
+                <div class="title">🧐 Actividad 1: ¡A Examen! Stand-up de Calidad ⏰ Tiempo: 5 minutos</div>
+             </div>
+            <div id="activity_1_content" class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Acción</th>
+                            <th style="width: 50%;">Diálogo del Maestro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Paso 1 (1 min):</strong> Introducir el foco del día (calidad, pruebas) frente a los Kanbans.
+                                (<strong>Proyectar Diapositiva 1</strong>).
+                            </td>
+                            <td>
+                                "¡Equipos! ¡Hoy nos ponemos las gafas de detectives 🕵️‍♀️🕵️‍♂️! Después de construir en la sesión pasada, hoy nos toca asegurarnos de que todo funciona como debería. ¡Es la sesión de Pruebas y Píxeles!"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Paso 2 (4 min):</strong> Guiar stand-up enfocado en tareas "Listas para Probar".
+                                (<strong>Proyectar Diapositiva 2</strong>). Facilitar que cada equipo identifique qué probará hoy.
+                            </td>
+                            <td>
+                                "Miren sus Kanbans. ¡Vamos a enfocarnos en esa columna de 'Listo para Probar (🔬)'!"
+                                <br><br>
+                                "Cada equipo, comparta rápidamente:"
+                                <ul>
+                                    <li>"¿Qué tarea o tareas tienen en 'Listo para Probar'?"</li>
+                                    <li>"De su Prototipo Funcional Básico, ¿qué parte específica creen que ya debería estar funcionando y vamos a probar hoy?"</li>
+                                </ul>
+                                <em>(Facilitar la ronda, asegurando que cada equipo identifique qué va a probar específicamente relacionado con su PFB).</em>
+                                <br><br>
+                                "¡Perfecto! Sabemos qué vamos a poner bajo la lupa. ¡Que comience la caza de bugs!"
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Actividad 2: ¡Caza-Bugs! Ciclo Prueba-Corrección -->
+        <div id="activity-2" class="activity">
+             <div class="banner" onclick="toggleContent('activity_2_content')">
+                 <div class="title">🐞 Actividad 2: ¡Caza-Bugs! Ciclo Prueba-Corrección ⏰ Tiempo: 30 minutos</div>
+             </div>
+            <div id="activity_2_content" class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Acción</th>
+                            <th style="width: 50%;">Diálogo del Maestro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Paso 1 (30 min - Bloque Principal):</strong> Facilitar el ciclo de prueba (Tester), corrección (Programador) y apoyo (Arquitecto). Circular y dar soporte.
+                                (<strong>Proyectar Diapositiva 3</strong>).
+                            </td>
+                            <td>
+                                "¡Equipos, empieza la operación Caza-Bugs! Tienen 30 minutos para este ciclo vital:"
+                                <br><br>
+                                "<strong>Testers Creativos/as:</strong> ¡Ustedes lideran! Tomen las tareas de 'Listo para Probar'. Abran Scratch y... ¡a probar! ¿Hace lo que dice la tarea? ¿Cumple con nuestro PFB? Si encuentran un 'bug' (algo que no funciona bien), ¡anótenlo de forma simple! Por ejemplo: 'La tortuga no habla cuando hago clic'."
+                                <br><br>
+                                "<strong>Programadores/as Scratch:</strong> ¡Listos para la acción! El Tester les dirá qué bugs encontró. Su misión: ¡volver al código y arreglarlos! ¡Conviértanse en súper-solucionadores de problemas!"
+                                <br><br>
+                                "<strong>Arquitectos/as Digitales:</strong> ¡Su visión es clave! Si el equipo se atasca con un bug difícil, ayuden a pensar por qué pasa. Den ideas para solucionarlo y asegúrense de que el arreglo siga siendo fiel a nuestra idea original."
+                                <br><br>
+                                "¡Recuerden! El Tester prueba, el Programador corrige, el Arquitecto guía. ¡Trabajen juntos para dejar su prototipo sin bugs!"
+                                <br><br>
+                                <em>(Circular intensamente. Ayudar a los Testers a ser específicos en sus reportes de bugs. Apoyar a los Programadores con pistas si se bloquean. Fomentar la comunicación clara entre roles. Celebrar los bugs encontrados y corregidos como éxitos del equipo).</em>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Paso 2 (Integrado en los 30 min):</strong> Explicar y supervisar el flujo Kanban para pruebas: Tareas probadas OK van a "¡Listo!"; tareas con bugs vuelven a "Haciendo".
+                                (<strong>Proyectar Diapositiva 4</strong>).
+                            </td>
+                            <td>
+                                <em>(Mientras circula, reforzar el flujo Kanban):</em>
+                                <br>
+                                "¡Atención al flujo en el Kanban durante las pruebas!"
+                                <br><br>
+                                "<strong>Tester:</strong> Si pruebas una tarea y ¡funciona perfecto! ¡Cumple todo! Avisa al equipo y ¡muevan esa tarea a la columna final de '¡Listo! (✅)'! ¡Es un logro!"
+                                <br><br>
+                                "Pero... si encuentras un bug 🐞, ¡no pasa nada! Informa bien al <strong>Programador/a</strong> cuál es el problema. Esa tarea debe volver a la columna 'Haciendo (⚙️)' para ser corregida. Pueden ponerle una marquita o una nota para recordar qué bug tenía."
+                                <br><br>
+                                "¡El objetivo es que las tareas del PFB lleguen a la columna '¡Listo!' funcionando perfectamente!"
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Actividad 3: ¡Control de Calidad! Cierre -->
+        <div id="activity-3" class="activity">
+            <div class="banner" onclick="toggleContent('activity_3_content')">
+                <div class="title">✅ Actividad 3: ¡Control de Calidad! Cierre ⏰ Tiempo: 5 minutos</div>
+            </div>
+            <div id="activity_3_content" class="content">
+                 <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 50%;">Acción</th>
+                            <th style="width: 50%;">Diálogo del Maestro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>Paso 1 (3 min):</strong> Guiar revisión final del Kanban, enfocando en el estado del PFB y tareas pendientes.
+                                (<strong>Proyectar Diapositiva 5</strong>).
+                            </td>
+                            <td>
+                                "¡Equipos, últimos minutos! Vamos a hacer un rápido control de calidad final en nuestro Kanban."
+                                <br><br>
+                                "Miren su tablero: ¿Cómo está la funcionalidad principal que definimos como Prototipo Funcional Básico? ¿Lograron mover esas tareas clave a la columna '¡Listo! (✅)'?"
+                                <br><br>
+                                "¿Quedan tareas importantes en 'Haciendo' o 'Listo para Probar'?"
+                                <br><br>
+                                <em>(Dar tiempo para que cada equipo revise y comente brevemente su estado).</em>
+                                <br><br>
+                                "¡Esto nos da una idea clara de dónde estamos!"
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Paso 2 (2 min):</strong> Cerrar la sesión. Anunciar foco de la próxima sesión (ajustes finales y entrega).
+                            </td>
+                            <td>
+                                "¡Increíble trabajo de depuración hoy, detectives! Han probado, encontrado y corregido errores como profesionales."
+                                <br><br>
+                                "En la próxima sesión, la última de este Prototipo Rápido, daremos los ¡últimos toques! Corregiremos cualquier detalle pendiente, puliremos un poco y ¡prepararemos nuestro proyecto para la entrega final!"
+                                <br><br>
+                                "¡Asegúrense de guardar bien su proyecto Scratch! ¡Nos vemos para la recta final!"
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div> <!-- Fin del container -->
+</body>
+</html>
