@@ -14,12 +14,21 @@
             color: white;
             padding: 10px;
             cursor: pointer;
-            margin-bottom: 10px;
+            margin-bottom: 10px; /* Adjusted for spacing */
             font-weight: bold;
             list-style: none;
             display: block;
+            border-radius: 5px; /* Rounded corners for banner */
         }
-        .content { display: none; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px; }
+        .content { 
+            display: none; 
+            padding: 15px; 
+            border: 1px solid #ddd; 
+            margin-bottom: 10px; 
+            border-radius: 5px; /* Rounded corners for content */
+            margin-top: -10px; /* Visual connection with banner */
+            padding-top: 20px; /* Avoid text clash */
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -43,13 +52,16 @@
         }
         .time-title { margin-bottom: 20px; text-align: center; font-size: 1.2em; color: #555;}
 
-        summary {
-           display: block;
-           list-style: none;
+        /* Making facilitator instructions clearer */
+        td em, td i { /* Style for italicized facilitator notes */
+            color: #555;
+            font-style: italic;
+            display: block; /* Put notes on new lines */
+            margin-top: 5px;
         }
-        summary::-webkit-details-marker {
-           display: none;
-        }
+        /* Ensure step <strong> tags render bold */
+        td strong { font-weight: bold; } /* General strong for keywords */
+        td > strong { display: block; margin-bottom: 5px; } /* For step headers */
 
     </style>
     <script>
@@ -69,6 +81,11 @@
             contents.forEach(content => {
                 content.style.display = 'none';
             });
+            // Open "Resumen de Sesión" by default
+            const resumenContent = document.getElementById('activity_0_content');
+            if (resumenContent) {
+                resumenContent.style.display = 'block';
+            }
         };
     </script>
 </head>
@@ -84,7 +101,7 @@
             <div class="banner" onclick="toggleContent('activity_0_content')">
                 <div class="title">📝 Resumen de Sesión</div>
             </div>
-            <div id="activity_0_content" class="content">
+            <div id="activity_0_content" class="content" style="display: block;"> {/* Open by default */}
                 <table>
                     <tr>
                         <td style="width: 50%; padding: 10px; border-right: 1px solid #ddd;">
@@ -135,8 +152,11 @@
                     <tbody>
                         <tr>
                             <td>
-                                <strong>Paso 1 (1 min):</strong> Introducir el foco del día (calidad, pruebas) frente a los Kanbans.
-                                (<strong>Proyectar Diapositiva 1</strong>).
+                                <strong>Paso 1 (1 min):</strong>
+                                <ul>
+                                    <li>Introducir el foco del día (calidad, pruebas) frente a los Kanbans.</li>
+                                    <li><strong>Proyectar Diapositiva 1</strong>.</li>
+                                </ul>
                             </td>
                             <td>
                                 "¡Equipos! ¡Hoy nos ponemos las gafas de detectives 🕵️‍♀️🕵️‍♂️! Después de construir en la sesión pasada, hoy nos toca asegurarnos de que todo funciona como debería. ¡Es la sesión de Pruebas y Píxeles!"
@@ -144,8 +164,12 @@
                         </tr>
                         <tr>
                             <td>
-                                <strong>Paso 2 (4 min):</strong> Guiar stand-up enfocado en tareas "Listas para Probar".
-                                (<strong>Proyectar Diapositiva 2</strong>). Facilitar que cada equipo identifique qué probará hoy.
+                                <strong>Paso 2 (4 min):</strong>
+                                <ul>
+                                    <li>Guiar stand-up enfocado en tareas "Listas para Probar".</li>
+                                    <li><strong>Proyectar Diapositiva 2</strong>.</li>
+                                    <li>Facilitar que cada equipo identifique qué probará hoy.</li>
+                                </ul>
                             </td>
                             <td>
                                 "Miren sus Kanbans. ¡Vamos a enfocarnos en esa columna de 'Listo para Probar (🔬)'!"
@@ -181,8 +205,12 @@
                     <tbody>
                         <tr>
                             <td>
-                                <strong>Paso 1 (30 min - Bloque Principal):</strong> Facilitar el ciclo de prueba (Tester), corrección (Programador) y apoyo (Arquitecto). Circular y dar soporte.
-                                (<strong>Proyectar Diapositiva 3</strong>).
+                                <strong>Paso 1 (30 min - Bloque Principal):</strong>
+                                <ul>
+                                    <li>Facilitar el ciclo de prueba (Tester), corrección (Programador) y apoyo (Arquitecto).</li>
+                                    <li>Circular y dar soporte.</li>
+                                    <li><strong>Proyectar Diapositiva 3</strong>.</li>
+                                </ul>
                             </td>
                             <td>
                                 "¡Equipos, empieza la operación Caza-Bugs! Tienen 30 minutos para este ciclo vital:"
@@ -200,8 +228,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <strong>Paso 2 (Integrado en los 30 min):</strong> Explicar y supervisar el flujo Kanban para pruebas: Tareas probadas OK van a "¡Listo!"; tareas con bugs vuelven a "Haciendo".
-                                (<strong>Proyectar Diapositiva 4</strong>).
+                                <strong>Paso 2 (Integrado en los 30 min):</strong>
+                                <ul>
+                                    <li>Explicar y supervisar el flujo Kanban para pruebas: Tareas probadas OK van a "¡Listo!"; tareas con bugs vuelven a "Haciendo".</li>
+                                    <li><strong>Proyectar Diapositiva 4</strong>.</li>
+                                </ul>
                             </td>
                             <td>
                                 <em>(Mientras circula, reforzar el flujo Kanban):</em>
@@ -236,8 +267,11 @@
                     <tbody>
                         <tr>
                             <td>
-                                <strong>Paso 1 (3 min):</strong> Guiar revisión final del Kanban, enfocando en el estado del PFB y tareas pendientes.
-                                (<strong>Proyectar Diapositiva 5</strong>).
+                                <strong>Paso 1 (3 min):</strong>
+                                <ul>
+                                    <li>Guiar revisión final del Kanban, enfocando en el estado del PFB y tareas pendientes.</li>
+                                    <li><strong>Proyectar Diapositiva 5</strong>.</li>
+                                </ul>
                             </td>
                             <td>
                                 "¡Equipos, últimos minutos! Vamos a hacer un rápido control de calidad final en nuestro Kanban."
@@ -253,7 +287,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <strong>Paso 2 (2 min):</strong> Cerrar la sesión. Anunciar foco de la próxima sesión (ajustes finales y entrega).
+                                <strong>Paso 2 (2 min):</strong>
+                                <ul>
+                                    <li>Cerrar la sesión.</li>
+                                    <li>Anunciar foco de la próxima sesión (ajustes finales y entrega).</li>
+                                </ul>
                             </td>
                             <td>
                                 "¡Increíble trabajo de depuración hoy, detectives! Han probado, encontrado y corregido errores como profesionales."
